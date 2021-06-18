@@ -13,6 +13,7 @@ services:
       MYSQL_PASSWORD: wordpress
     networks:
     - wp_network_prod
+    
   wordpress:
     depends_on:
       - db
