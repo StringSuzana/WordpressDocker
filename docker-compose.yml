@@ -7,7 +7,7 @@ services:
       - ./project/prod/ng_data:/etc/nginx/conf.d/default.conf
     restart: always
     ports:
-      - "8000:80" #ovo ne moram sad stavljati tu
+      - "8000:80" 
     
   db_prod:
     image: mysql:5.7
@@ -15,7 +15,7 @@ services:
       - ./project/prod/db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
@@ -25,7 +25,7 @@ services:
       - db_prod
     image: wordpress:latest #staviti da čita moj dockerfile
     volumes:
-      - ./project/prod/wordpress_data/html:/var/www/html
+      - ./project/prod/wp_data/html:/var/www/html
     restart: always
     environment:
       WORDPRESS_DB_HOST: db_prod:3306
