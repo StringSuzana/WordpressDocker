@@ -8,7 +8,7 @@ services:
     restart: always
     ports:
       - "8000:80" 
-    
+
   db_prod:
     image: mysql:5.7
     volumes:
@@ -19,7 +19,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-    
+
   wordpress_prod:
     depends_on:
       - db_prod
