@@ -3,10 +3,10 @@ version: "3.9"
 services:
   nginx_prod:
     build:
-      context: ./project/prod/dockerfiles/nginx
+      context: /project/prod/dockerfiles/nginx
       dockerfile: Dockerfile
     volumes:
-      - /project/prod/ng_data:/etc/nginx/conf.d
+      - /project/prod/dockerfiles/nginx/conf.d:/etc/nginx/conf.d
     restart: always
     ports:
       - "8080:80"
