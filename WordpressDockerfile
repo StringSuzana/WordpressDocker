@@ -1,4 +1,0 @@
-FROM wordpress:latest
-
-#RUN mkdir ipaddr && touch /ipaddr/wp_ipaddress.txt
-#RUN docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id > /ipaddr/wp_ipaddress.txt
