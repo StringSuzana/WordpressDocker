@@ -3,7 +3,7 @@ version: "3.9"
 services:
   nginx_prod:
     build:
-      context: ./project/dockerfiles/nginx
+      context: ./project/prod/dockerfiles/nginx
       dockerfile: Dockerfile
     volumes:
       - ./project/prod/ng_data:/etc/nginx/conf.d
