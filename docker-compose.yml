@@ -1,20 +1,20 @@
 version: "3.9"
-    
+
 services:
   nginx_prod:
     build:
       context: ./project/prod/dockerfiles/nginx
       dockerfile: Dockerfile
     volumes:
-      - ./project/prod/ng_data:/etc/nginx/conf.d
+      - /project/prod/ng_data:/etc/nginx/conf.d
     restart: always
     ports:
-      - "8000:80" 
+      - "8080:80"
 
   db_prod:
     image: mysql:5.7
     volumes:
-      - ./project/prod/db_data:/var/lib/mysql
+      - /project/prod/db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -27,7 +27,7 @@ services:
       - db_prod
     image: wordpress:latest #staviti da čita moj dockerfile
     volumes:
-      - ./project/prod/wp_data/html:/var/www/html
+      - /project/prod/wp_data/html:/var/www/html
     restart: always
     environment:
       WORDPRESS_DB_HOST: db_prod:3306
