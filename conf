@@ -1,7 +1,6 @@
 server {
     listen 80;
-    server_name localhost;
     location / {
-         proxy_pass wp_ip_address:80 #da li je ovo ok??
+         proxy_pass ${IP_ADDRESS}:80
     }
  }
