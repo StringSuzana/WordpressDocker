@@ -1,6 +1,6 @@
 server {
     listen 8080;
     location / {
-         proxy_pass backend_prod:80
+         proxy_pass frontend_prod:80
     }
  }
