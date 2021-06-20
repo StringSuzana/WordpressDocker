@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  nginx:
-    container_name: nginx
+  nginx_test:
+    container_name: nginx_test
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -12,12 +12,12 @@ services:
     ports:
       - "8080:80"
     networks:
-      - frontend
+      - frontend_test
     depends_on:
-      - wordpress
+      - wordpress_test
 
-  db:
-    container_name: db
+  db_test:
+    container_name: db_test
     image: mysql:5.7
     volumes:
       - ./db_data:/var/lib/mysql
@@ -28,10 +28,10 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     networks:
-      - backend
+      - backend_test
 
-  wordpress:
-    container_name: wordpress
+  wordpress_test:
+    container_name: wordpress_test
     depends_on:
       - db_test
     image: wordpress:latest
@@ -39,13 +39,13 @@ services:
       - ./wp_data/html:/var/www/html
     restart: always
     environment:
-      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_HOST: db_test:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     networks:
-      - frontend
-      - backend
+      - frontend_test
+      - backend_test
 networks:
-  frontend: {}
-  backend: {}
+  frontend_test: {}
+  backend_test: {}
