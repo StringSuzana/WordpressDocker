@@ -1,4 +1,4 @@
-ttp{
+http{
 server {
     listen 8080;
     server_name localhost 127.0.0.1;
