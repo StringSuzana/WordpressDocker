@@ -10,6 +10,8 @@ services:
     restart: always
     ports:
       - "8080:80"
+    networks:
+      - frontend_prod
 
   db_prod:
     image: mysql:5.7
@@ -21,6 +23,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    networks:
+      - backend_prod
 
   wordpress_prod:
     depends_on:
@@ -34,3 +38,9 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+    networks:
+      - frontend_prod
+      - backend_prod
+networks:
+  frontend_prod: {}
+  backend_prod: {}
