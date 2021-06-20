@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  nginx:
-    container_name: nginx
+  nginx_prod:
+    container_name: nginx_prod
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -12,12 +12,12 @@ services:
     ports:
       - "80:80"
     networks:
-      - frontend
+      - frontend_prod
     depends_on:
-      - wordpress
+      - wordpress_prod
 
-  db:
-    container_name: db
+  db_prod:
+    container_name: db_prod
     image: mysql:5.7
     volumes:
       - ./db_data:/var/lib/mysql
@@ -28,25 +28,25 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     networks:
-      - backend
+      - backend_prod
 
-  wordpress:
-    container_name: wordpress
+  wordpress_prod:
+    container_name: wordpress_prod
     depends_on:
-      - db
+      - db_prod
     image: wordpress:latest
     volumes:
       - ./wp_data/html:/var/www/html
     restart: always
     environment:
-      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_HOST: db_prod:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     networks:
-      - frontend
-      - backend
+      - frontend_prod
+      - backend_prod
 
 networks:
-  frontend: {}
-  backend: {}
+  frontend_prod: {}
+  backend_prod: {}
