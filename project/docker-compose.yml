@@ -13,6 +13,8 @@ services:
       - "8080:80"
     networks:
       - frontend_prod
+    depends_on:
+      - wordpress_prod
 
   db_prod:
     container_name: db_prod
