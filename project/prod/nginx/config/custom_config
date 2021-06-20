@@ -1,9 +1,0 @@
-http{
-server {
-    listen 8080;
-    server_name localhost 127.0.0.1;
-    location / {
-         proxy_pass http://wordpress_prod:80;
-    }
- }
- }

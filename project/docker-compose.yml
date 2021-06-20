@@ -10,7 +10,7 @@ services:
       - ./prod/nginx/config:/etc/nginx/conf.d
     restart: always
     ports:
-      - "8080:80"
+      - "80:80"
     networks:
       - frontend_prod
     depends_on:
@@ -46,6 +46,54 @@ services:
     networks:
       - frontend_prod
       - backend_prod
+      
+  nginx_test:
+    container_name: ng_test
+    build:
+      context: ./test/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./test/nginx/config:/etc/nginx/conf.d
+    restart: always
+    ports:
+      - "8080:80"
+    networks:
+      - frontend_test
+    depends_on:
+      - wordpress_test
+
+  db_test:
+    container_name: db_test
+    image: mysql:5.7
+    volumes:
+      - ./test/db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - backend_test
+
+  wordpress_test:
+    container_name: wordpress_test
+    depends_on:
+      - db_test
+    image: wordpress:latest
+    volumes:
+      - ./test/wp_data/html:/var/www/html
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db_test:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    networks:
+      - frontend_test
+      - backend_test
 networks:
   frontend_prod: {}
   backend_prod: {}
+  frontend_test: {}
+  backend_test: {}

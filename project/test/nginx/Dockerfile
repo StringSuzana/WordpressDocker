@@ -1,3 +1,3 @@
 FROM nginx
-RUN rm /etc/nginx/conf.d/default.conf
-COPY conf.d /etc/nginx
+#RUN rm /etc/nginx/conf.d/default.conf
+COPY config/custom.conf /etc/nginx/conf.d/default.conf

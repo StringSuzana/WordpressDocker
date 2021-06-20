@@ -1,6 +1,12 @@
 #!/bin/bash
-docker network create frontend
-docker network create backend
 
-docker network ls 
+docker-compose up -d
 
+cd ~/Desktop/project/prod/wp_data/html/wp-admin
+sudo chown su:su install.php
+sudo echo 'This is a production' > install.php
+
+
+cd ~/Desktop/project/test/wp_data/html/wp-admin
+sudo chown su:su install.php
+sudo echo 'this is a production' > install.php
