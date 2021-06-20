@@ -7,7 +7,7 @@ services:
       context: ./prod/nginx
       dockerfile: Dockerfile
     volumes:
-      - ./prod/nginx/config:/etc/nginx/conf.d/default.conf
+      - ./prod/nginx/config:/etc/nginx/conf.d
     restart: always
     ports:
       - "8080:80"
