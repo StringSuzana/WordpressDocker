@@ -1,12 +1,9 @@
-upstream wordpress_prod {
-    server wordpress_prod;
-}
+ttp{
 server {
     listen 8080;
-    listen 80;
-    listen [::]:80;
-    server_name _;
+    server_name localhost 127.0.0.1;
     location / {
-         proxy_pass wordpress_prod:80;
+         proxy_pass http://wordpress_prod:80;
     }
+ }
  }
