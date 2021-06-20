@@ -1,6 +1,6 @@
 server {
     listen 8080;
     location / {
-         proxy_pass ${IP_ADDRESS}:80
+         proxy_pass backend_prod:80
     }
  }
