@@ -29,7 +29,7 @@ services:
       - backend_prod
 
   wordpress_prod:
-    container_name: db_prod
+    container_name: wordpress_prod
     depends_on:
       - db_prod
     image: wordpress:latest
