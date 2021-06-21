@@ -3,7 +3,6 @@ if [ -z ${APP+x} ]; then
   echo "You need to provide app name => APP='some-name'"
 else
 echo "Starting $APP"
-
 cd prod
 sudo mkdir wp_data
 sudo mkdir db_data
